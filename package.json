@@ -1,6 +1,6 @@
 {
-    "name": "@write-coin/ceres-ts-template",
-    "version": "1.0.5",
+    "name": "@write-coin/utils",
+    "version": "1.0.0",
     "scripts": {
         "watch": "ceres-tstl --watch",
         "dev": "npm-watch",
@@ -44,6 +44,7 @@
         }
     },
     "dependencies": {
+        "@write-coin/ceres-ts-template": "^1.0.5",
         "war3-types": "^1.0.4"
     },
     "description": "This repository has a configuration template for using Ceres with TypeScript.",

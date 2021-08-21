@@ -36,7 +36,7 @@
         },
         "declaration": false
     },
-    "include": ["./src", "main.ts"],
+    "include": ["./node_modules/@write-coin/*/src", "./src", "main.ts"],
     "tstl": {
         "luaTarget": "5.3",
         "noHeader": true,
