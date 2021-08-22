@@ -1,8 +1,14 @@
-export let AllPlayers: player[]
+import { AllPlayers } from "./players"
+import { playerUnitTriggers } from "./trigger"
 
 export const init = () => {
-    const max_slots = GetBJMaxPlayerSlots()
-    for (let i = 0; i < max_slots; i++) {
-        AllPlayers.push(Player(i))
-    }
+    AllPlayers.forEach(p => print(GetPlayerName(p)))
+
+    const unit = CreateUnit(Player(0), FourCC("hpea"), 0, 0, 0)
+
+    playerUnitTriggers.death.addAction(() => {
+        print("убит: ", GetUnitName(GetTriggerUnit()))
+    })
+
+    KillUnit(unit)
 }

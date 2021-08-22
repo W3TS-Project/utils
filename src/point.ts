@@ -1,3 +1,9 @@
+export const angleBetweenCoords = (x1: number, y1: number, x2: number, y2: number) =>
+    math.deg(math.atan(y2 - y1, x2 - x1))
+
+export const distBetweenCoords = (x1: number, y1: number, x2: number, y2: number) =>
+    math.sqrt(((x2 - x1) ^ 2) + ((y2 - y1) ^ 2))
+
 export class Point {
     x: number
     y: number
@@ -19,6 +25,40 @@ export class Point {
 
     setPoint(p: Point) {
         return this.setCoords(p.x, p.y, p.z)
+    }
+
+    offsetXRad(offset: number, angle: real) {
+        this.x += offset * math.cos(angle)
+        return this
+    }
+
+    offsetYRad(offset: number, angle: real) {
+        this.y += offset * math.sin(angle)
+        return this
+    }
+
+    offsetX(offset: number, angle: real) {
+        return this.offsetXRad(offset, math.rad(angle))
+    }
+
+    offsetY(offset: number, angle: real) {
+        return this.offsetYRad(offset, math.rad(angle))
+    }
+
+    offsetRad(offset: number, angle: real) {
+        return this.offsetX(offset, angle).offsetY(offset, angle)
+    }
+
+    offset(offset: number, angle: real) {
+        return this.offsetRad(offset, math.rad(angle))
+    }
+
+    angleBetween(p: Point) {
+        return angleBetweenCoords(this.x, this.y, p.x, p.y)
+    }
+
+    distBetween(p: Point) {
+        return distBetweenCoords(this.x, this.y, p.x, p.y)
     }
 }
 

@@ -4,7 +4,7 @@
 /// <reference types="lua-types/5.3"/>
 /// <reference types="ceres-decl/ceres"/>
 
+import { setTimeout } from "@write-coin/ceres-ts-template/src/timer"
 import { init } from "./src/package"
-import { setTimeout } from "./src/timer"
 
-setTimeout(0, init)
+setTimeout(0., init)
