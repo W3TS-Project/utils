@@ -5,4 +5,5 @@ export const setUnitMana = (u: unit, value: real) => SetUnitState(u, ConvertUnit
 export const addUnitLife = (u: unit, value: real) => setUnitLife(u, getUnitLife(u) + value)
 export const addUnitMana = (u: unit, value: real) => setUnitMana(u, getUnitMana(u) + value)
 export const addUnitMaxHP = (u: unit, value: real) => BlzSetUnitMaxHP(u, BlzGetUnitMaxHP(u) + value)
-export const addUnitMaxMP = (u: unit, value: real) => BlzSetUnitMaxMana(u, BlzGetUnitMaxMana(u) + value)
+export const addUnitMaxMP = (u: unit, value: real) =>
+    BlzSetUnitMaxMana(u, BlzGetUnitMaxMana(u) + value)

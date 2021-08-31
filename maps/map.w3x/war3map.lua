@@ -1,5 +1,6 @@
 gg_trg_allocator = nil
 gg_unit_Hblm_0000 = nil
+gg_trg_start = nil
 function InitGlobals()
 end
 
@@ -33,8 +34,19 @@ function InitTrig_allocator()
     TriggerAddAction(gg_trg_allocator, Trig_allocator_Actions)
 end
 
+function Trig_start_Actions()
+        print(loadstring)
+end
+
+function InitTrig_start()
+    gg_trg_start = CreateTrigger()
+    TriggerRegisterTimerEventSingle(gg_trg_start, 0.10)
+    TriggerAddAction(gg_trg_start, Trig_start_Actions)
+end
+
 function InitCustomTriggers()
     InitTrig_allocator()
+    InitTrig_start()
 end
 
 function InitCustomPlayerSlots()

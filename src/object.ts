@@ -1,5 +1,5 @@
 export abstract class ObjectOptions {
-    static entries<T extends object>(obj: { [key: string]: T }): [string, T][] {
+    static entries<T extends Object>(obj: { [key: string]: T }): [string, T][] {
         let result: [string, T][] = []
         for (const key of Object.keys(obj)) {
             result.push([key, obj[key]])
@@ -7,7 +7,7 @@ export abstract class ObjectOptions {
         return result
     }
 
-    static values<T extends object>(obj: { [key: string]: T }): T[] {
+    static values<T extends Object>(obj: { [key: string]: T }): T[] {
         let result = []
         for (const key of Object.keys(obj)) {
             result.push(obj[key])
