@@ -189,5 +189,9 @@ namespace ObjEdit {
         parentId: rawcode
     } & Partial<ItemDataBody>
 
+    export type ItemDataOutput = {
+        parentId: rawcode
+    } & ItemDataBody
+
     export type ItemDataKeys = keyof ItemDataBody
 }

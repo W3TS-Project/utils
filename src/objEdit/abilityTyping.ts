@@ -2,22 +2,16 @@ namespace ObjEdit {
     /**
      * Сценарий воздействия
      */
-    export type TargetAttachCount =
-        | 0
-        | 1
-        | 2
-        | 3
-        | 4
-        | 5
-        | 6
+    export type TargetAttachCount = 0 | 1 | 2 | 3 | 4 | 5 | 6
 
     /**
      * Точки приложения заклинания
      */
-    export type CasterAttachCount =
-        | 0
-        | 1
-        | 2
+    export type CasterAttachCount = 0 | 1 | 2
+
+    export type LevelProp<T extends Object> = List<T> | LevelToArray<T>
+
+    export type LevelData = LevelProp<Primitive>
 
     type AbilityDataBody = {
         /**
@@ -153,21 +147,25 @@ namespace ObjEdit {
          */
         Name: string
         /**
-         * Текст - Подсказка: используется, нормальная
+         * Уровень N - Текст - Подсказка: используется, нормальная
+         * N от 0 до levels - 1
          */
-        Tip: StringList
+        Tip: LevelProp<string>
         /**
-         * Текст - Подсказка: используется, подробная
+         * Уровень N - Текст - Подсказка: используется, подробная
+         * N от 0 до levels - 1
          */
-        Ubertip: StringList
+        Ubertip: LevelProp<string>
         /**
-         * Текст - Подсказка: не используется
+         * Уровень N - Текст - Подсказка: не используется
+         * N от 0 до levels - 1
          */
-        Untip: StringList
+        Untip: LevelProp<string>
         /**
-         * Текст - Подсказка: не используется, подробная
+         * Уровень N - Текст - Подсказка: не используется, подробная
+         * N от 0 до levels - 1
          */
-        Unubertip: StringList
+        Unubertip: LevelProp<string>
         /**
          * Текст - Порядок строк: включен
          */
@@ -195,35 +193,41 @@ namespace ObjEdit {
         /**
          * Технологии - Требования
          */
-        Requires: StringList
+        Requires: LevelProp<string>
         /**
          * Технологии - Требования: уровни
          */
-        Requiresamount: StringList
+        Requiresamount: LevelProp<string>
         /**
-         * Характеристики - Время подготовки заклинания
+         * Уровень N - Характеристики - Время подготовки заклинания
+         * N от 0 до levels - 1
          */
-        Cast: RealList
+        Cast: LevelProp<real>
         /**
-         * Характеристики - Длительность воздействия: герой
+         * Уровень N - Характеристики - Длительность воздействия: герой
+         * N от 0 до levels - 1
          */
-        HeroDur: RealList
+        HeroDur: LevelProp<real>
         /**
-         * Характеристики - Длительность: нормальная
+         * Уровень N - Характеристики - Длительность: нормальная
+         * N от 0 до levels - 1
          */
-        Dur: RealList
+        Dur: LevelProp<real>
         /**
-         * Характеристики - Заклинания
+         * Уровень N - Характеристики - Заклинания
+         * N от 0 до levels - 1
          */
-        BuffID: StringList
+        BuffID: LevelProp<string>
         /**
-         * Характеристики - Затрачиваемая мана
+         * Уровень N - Характеристики - Затрачиваемая мана
+         * N от 0 до levels - 1
          */
-        Cost: IntegerList
+        Cost: LevelProp<integer>
         /**
-         * Характеристики - Область воздействия
+         * Уровень N - Характеристики - Область воздействия
+         * N от 0 до levels - 1
          */
-        Area: RealList
+        Area: LevelProp<real>
         /**
          * Характеристики - Относится к герою
          */
@@ -233,21 +237,24 @@ namespace ObjEdit {
          */
         item: boolean
         /**
-         * Характеристики - Перезарядка
+         * Уровень N - Характеристики - Перезарядка
+         * N от 0 до levels - 1
          */
-        Cool: RealList
+        Cool: LevelProp<real>
         /**
          * Характеристики - Приоритет для кражи заклятия
          */
         priority: integer
         /**
-         * Характеристики - Радиус действия
+         * Уровень N - Характеристики - Радиус действия
+         * N от 0 до levels - 1
          */
-        Rng: RealList
+        Rng: LevelProp<real>
         /**
-         * Характеристики - Разрешенные цели
+         * Уровень N - Характеристики - Разрешенные цели
+         * N от 0 до levels - 1
          */
-        targs: List<TargetType>
+        targs: LevelProp<TargetType>
         /**
          * Характеристики - Раса
          */
@@ -257,14 +264,82 @@ namespace ObjEdit {
          */
         levels: integer
         /**
-         * Характеристики - Эффекты
+         * Уровень N - Характеристики - Эффекты
+         * N от 0 до levels - 1
          */
-        EfctID: StringList
+        EfctID: LevelProp<string>
+        /**
+         * Уровень N - Данные - Параметр A
+         * N от 0 до levels - 1
+         */
+        DataA: LevelData
+        /**
+         * Уровень N - Данные - Параметр B
+         * N от 0 до levels - 1
+         */
+        DataB: LevelData
+        /**
+         * Уровень N - Данные - Параметр C
+         * N от 0 до levels - 1
+         */
+        DataC: LevelData
+        /**
+         * Уровень N - Данные - Параметр D
+         * N от 0 до levels - 1
+         */
+        DataD: LevelData
+        /**
+         * Уровень N - Данные - Параметр E
+         * N от 0 до levels - 1
+         */
+        DataE: LevelData
+        /**
+         * Уровень N - Данные - Параметр F
+         * N от 0 до levels - 1
+         */
+        DataF: LevelData
+        /**
+         * Уровень N - Данные - Параметр G
+         * N от 0 до levels - 1
+         */
+        DataG: LevelData
+        /**
+         * Уровень N - Данные - Параметр H
+         * N от 0 до levels - 1
+         */
+        DataH: LevelData
+        /**
+         * Уровень N - Данные - Параметр I
+         * N от 0 до levels - 1
+         */
+        DataI: LevelData
+        /**
+         * Уровень N - Данные - идентификатор боевой единицы
+         * N от 0 до levels - 1
+         */
+        UnitID: LevelProp<string>
+    }
+
+    type HeroAbilityDataBody = AbilityDataBody & {
+        /**
+         * Текст - Подсказка: выучить
+         */
+        Researchtip: string
+        /**
+         * Текст - Подсказка: выучить, подробная
+         */
+        Researchubertip: string
     }
 
     export type AbilityDataInput = {
         parentId: rawcode
     } & Partial<AbilityDataBody>
 
+    export type HeroAbilityDataInput = {
+        parentId: rawcode
+    } & Partial<HeroAbilityDataBody>
+
     export type AbilityDataKeys = keyof AbilityDataBody
+
+    export type HeroAbilityDataKeys = keyof HeroAbilityDataBody
 }

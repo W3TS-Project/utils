@@ -1,6 +1,8 @@
 namespace ObjEdit {
     export type UpgradeVal = integer | real | boolean
 
+    export type UpgradeValList = List<UpgradeVal>
+
     /**
      * Класс
      * Нет - _
@@ -28,53 +30,20 @@ namespace ObjEdit {
          */
         gbpy: ButtonPosY
         /**
-         * Данные - Эффект 1
+         * Данные - Эффект N
+         * N от 0 до 3
          */
-        effect1: string
+        effect: StringList
         /**
-         * Данные - Эффект 1 - изначально
+         * Данные - Эффект N - изначально
+         * N от 0 до 3
          */
-        base1: UpgradeVal
+        base: UpgradeValList
         /**
-         * Данные - Эффект 1 - прирост
+         * Данные - Эффект N - Прирост
+         * N от 0 до 3
          */
-        mod1: UpgradeVal
-        /**
-         * Данные - Эффект 2
-         */
-        effect2: string
-        /**
-         * Данные - Эффект 2 - изначально
-         */
-        base2: UpgradeVal
-        /**
-         * Данные - Эффект 2 - прирост
-         */
-        mod2: UpgradeVal
-        /**
-         * Данные - Эффект 3
-         */
-        effect3: string
-        /**
-         * Данные - Эффект 3 - изначально
-         */
-        base3: UpgradeVal
-        /**
-         * Данные - Эффект 3 - прирост
-         */
-        mod3: UpgradeVal
-        /**
-         * Данные - Эффект 4
-         */
-        effect4: string
-        /**
-         * Данные - Эффект 4 - изначально
-         */
-        base4: UpgradeVal
-        /**
-         * Данные - Эффект 4 - прирост
-         */
-        mod4: UpgradeVal
+        mod: UpgradeValList
         /**
          * Характеристики - Класс
          */
@@ -121,36 +90,44 @@ namespace ObjEdit {
         inherit: boolean
         /**
          * Уровень N - Графика - Пиктограмма
+         * N от 0 до maxlevel - 1
          */
-        Art: StringList
+        Art: LevelProp<string>
         /**
          * Уровень N - Текст - Горячая клавиша
+         * N от 0 до maxlevel - 1
          */
-        Hotkey: StringList
+        Hotkey: LevelProp<string>
         /**
          * Уровень N - Текст - Название
+         * N от 0 до maxlevel - 1
          */
-        Name: StringList
+        Name: LevelProp<string>
         /**
          * Уровень N - Текст - Подсказка
+         * N от 0 до maxlevel - 1
          */
-        Tip: StringList
+        Tip: LevelProp<string>
         /**
          * Уровень N - Текст - Подсказка: подробная
+         * N от 0 до maxlevel - 1
          */
-        Ubertip: StringList
+        Ubertip: LevelProp<string>
         /**
          * Уровень N - Текст - Суффикс редактора
+         * N от 0 до maxlevel - 1
          */
-        EditorSuffix: StringList
+        EditorSuffix: LevelProp<string>
         /**
          * Уровень N - Технологии - Требования
+         * N от 0 до maxlevel - 1
          */
-        Requires: StringList
+        Requires: LevelProp<string>
         /**
          * Уровень N - Технологии - Требования: уровни
+         * N от 0 до maxlevel - 1
          */
-        Requiresamount: IntegerList
+        Requiresamount: LevelProp<integer>
     }
 
     export type UpgradeDataInput = {

@@ -1883,14 +1883,7 @@ namespace ObjEdit {
      * Плывущий - float
      * Земноводный - amph
      */
-    export type MovementType =
-        | ''
-        | 'foot'
-        | 'horse'
-        | 'fly'
-        | 'hover'
-        | 'float'
-        | 'amph'
+    export type MovementType = "" | "foot" | "horse" | "fly" | "hover" | "float" | "amph"
 
     /**
      * Тип цели
@@ -2162,12 +2155,7 @@ namespace ObjEdit {
      * Ресурс - resource
      * Фабрика - factory
      */
-    export type UnitBuffType =
-        | '_'
-        | 'buffer'
-        | 'townhall'
-        | 'resource'
-        | 'factory'
+    export type UnitBuffType = "_" | "buffer" | "townhall" | "resource" | "factory"
 
     /**
      * Регенерация:
@@ -2970,77 +2958,250 @@ namespace ObjEdit {
         isbldq: boolean
     }
 
+    /**
+     * Используемые классы
+     */
+    export type RequiresCount = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+
+    /**
+     * Основная характеристика
+     * AGI - Ловкость
+     * INT - Интеллект
+     * STR - Сила
+     */
+    export type PrimaryAttribute = "AGI" | "INT" | "STR"
+
+    type HeroUnitDataBody = UnitDataBody & {
+        /**
+         * Способности - Герой
+         */
+        heroAbilList: StringList
+        /**
+         * Текст - Имена собственные
+         */
+        Propernames: StringList
+        /**
+         * Текст - Использованы имена собственные
+         */
+        nameCount: integer
+        /**
+         * Текст - Подсказка: оживить
+         */
+        Revivetip: string
+        /**
+         * Текст - Подсказка: пробудить
+         */
+        Awakentip: string
+        /**
+         * Технологии - Места возрождения героев
+         */
+        Reviveat: StringList
+        /**
+         * Технологии - Требования - используемые классы
+         */
+        Requirescount: RequiresCount
+        /**
+         * Технологии - Требования - класс N
+         * N от 0 до 7
+         */
+        Requires: StringList
+        /**
+         * Характеристики - Герой - не показывать на мини-карте
+         */
+        hideHeroMinimap: boolean
+        /**
+         * Характеристики - Герой - скрыть пиктограмму на панели
+         */
+        hideHeroBar: boolean
+        /**
+         * Характеристики - Герой: скрыть сообщение о гибели
+         */
+        hideHeroDeathMsg: boolean
+        /**
+         * Характеристики - Исходная ловкость
+         */
+        AGI: integer
+        /**
+         * Характеристики - Исходная сила
+         */
+        STR: integer
+        /**
+         * Характеристики - Исходный разум
+         */
+        INT: integer
+        /**
+         * Характеристики - Основная характеристика
+         */
+        Primary: PrimaryAttribute
+        /**
+         * Характеристики - Повышение ловкости с каждым уровнем
+         */
+        AGIplus: real
+        /**
+         * Характеристики - Повышение разума с каждым уровнем
+         */
+        INTplus: real
+        /**
+         * Характеристики - Повышение силы с каждым уровнем
+         */
+        STRplus: real
+    }
+
     export type UnitDataInput = {
+        id: rawcode
         parentId: rawcode
     } & Partial<UnitDataBody>
 
-    export type UnitDataOutput = {
+    export type HeroUnitDataInput = {
+        id: rawcode
         parentId: rawcode
-    } & Exclude<
-        keyof UnitDataBody,
-        | "RngBuff1"
-        | "spillDist1"
-        | "showUI1"
-        | "Farea1"
-        | "Qarea1"
-        | "Harea1"
-        | "splashTargs1"
-        | "spillRadius1"
-        | "dmgUp1"
-        | "Qfact1"
-        | "Hfact1"
-        | "damageLoss1"
-        | "RngBuff2"
-        | "spillDist2"
-        | "showUI2"
-        | "Farea2"
-        | "Qarea2"
-        | "Harea2"
-        | "spashTargs2"
-        | "spillRadius2"
-        | "dmgUp2"
-        | "Qfact2"
-        | "Hfact2"
-        | "damageLoss2"
-        | "blend"
-        | "fatLOS"
-        | "elevRad"
-        | "elevPts"
-        | "impactZ"
-        | "impactSwimZ"
-        | "ScoreScreenIcon"
-        | "orientInterp"
-        | "occH"
-        | "customTeamColor"
-        | "propWin"
-        | "Attachmentlinkprops"
-        | "launchX"
-        | "launchY"
-        | "launchZ"
-        | "launchSwimZ"
-        | "Boneprops"
-        | "fogRad"
-        | "Casterupgradeart"
-        | "fileVerFlags"
-        | "maxSpd"
-        | "moveFloor"
-        | "minSpd"
-        | "LoopingSoundFadeOut"
-        | "LoopingSoundFadeIn"
-        | "RandomSoundLabel"
-        | "buffRadius"
-        | "buffType"
-        | "tilesetSpecific"
-        | "campaign"
-        | "special"
-        | "useClickHelper"
-        | "hostilePal"
-        | "inEditor"
-        | "tilesets"
-        | "EditorSuffix"
-        | "type"
-        | "prio"
+    } & Partial<HeroUnitDataBody>
+
+    export type UnitDataKey = keyof UnitDataBody
+
+    export type UnitDataOutputKey = Exclude<
+        UnitDataKey,
+        Exclude<
+            UnitDataKey,
+            | "RngBuff1"
+            | "spillDist1"
+            | "showUI1"
+            | "Farea1"
+            | "Qarea1"
+            | "Harea1"
+            | "splashTargs1"
+            | "spillRadius1"
+            | "dmgUp1"
+            | "Qfact1"
+            | "Hfact1"
+            | "damageLoss1"
+            | "RngBuff2"
+            | "spillDist2"
+            | "showUI2"
+            | "Farea2"
+            | "Qarea2"
+            | "Harea2"
+            | "splashTargs2"
+            | "spillRadius2"
+            | "dmgUp2"
+            | "Qfact2"
+            | "Hfact2"
+            | "damageLoss2"
+            | "blend"
+            | "fatLOS"
+            | "elevRad"
+            | "elevPts"
+            | "impactZ"
+            | "impactSwimZ"
+            | "ScoreScreenIcon"
+            | "orientInterp"
+            | "occH"
+            | "customTeamColor"
+            | "propWin"
+            | "Attachmentlinkprops"
+            | "launchX"
+            | "launchY"
+            | "launchZ"
+            | "launchSwimZ"
+            | "Boneprops"
+            | "fogRad"
+            | "Casterupgradeart"
+            | "fileVerFlags"
+            | "maxSpd"
+            | "moveFloor"
+            | "minSpd"
+            | "LoopingSoundFadeOut"
+            | "LoopingSoundFadeIn"
+            | "RandomSoundLabel"
+            | "buffRadius"
+            | "buffType"
+            | "tilesetSpecific"
+            | "campaign"
+            | "special"
+            | "useClickHelper"
+            | "hostilePal"
+            | "inEditor"
+            | "tilesets"
+            | "EditorSuffix"
+            | "type"
+            | "prio"
+        >
     >
 
-    export type UnitDataKeys = keyof UnitDataBody
+    export const unitDataOutputKeys: Set<UnitDataOutputKey> = new Set([
+        "RngBuff1",
+        "spillDist1",
+        "showUI1",
+        "Farea1",
+        "Qarea1",
+        "Harea1",
+        "splashTargs1",
+        "spillRadius1",
+        "dmgUp1",
+        "Qfact1",
+        "Hfact1",
+        "damageLoss1",
+        "RngBuff2",
+        "spillDist2",
+        "showUI2",
+        "Farea2",
+        "Qarea2",
+        "Harea2",
+        "splashTargs2",
+        "spillRadius2",
+        "dmgUp2",
+        "Qfact2",
+        "Hfact2",
+        "damageLoss2",
+        "blend",
+        "fatLOS",
+        "elevRad",
+        "elevPts",
+        "impactZ",
+        "impactSwimZ",
+        "ScoreScreenIcon",
+        "orientInterp",
+        "occH",
+        "customTeamColor",
+        "propWin",
+        "Attachmentlinkprops",
+        "launchX",
+        "launchY",
+        "launchZ",
+        "launchSwimZ",
+        "Boneprops",
+        "fogRad",
+        "Casterupgradeart",
+        "fileVerFlags",
+        "maxSpd",
+        "moveFloor",
+        "minSpd",
+        "LoopingSoundFadeOut",
+        "LoopingSoundFadeIn",
+        "RandomSoundLabel",
+        "buffRadius",
+        "buffType",
+        "tilesetSpecific",
+        "campaign",
+        "special",
+        "useClickHelper",
+        "hostilePal",
+        "inEditor",
+        "tilesets",
+        "EditorSuffix",
+        "type",
+        "prio"
+    ])
+
+    export type UnitDataOutput<T extends UnitDataKey> = {
+        id: rawcode
+        parentId: rawcode
+    } & Exclude<UnitDataKey, T>
+
+    export type HeroUnitDataKey = keyof HeroUnitDataBody
+
+    export type HeroUnitDataOutput<T extends HeroUnitDataKey> = {
+        id: rawcode
+        parentId: rawcode
+    } & Exclude<HeroUnitDataKey, T>
 }
